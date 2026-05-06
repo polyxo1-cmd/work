@@ -1,0 +1,42 @@
+import random
+
+def make_matrix(n):
+    matrix = []
+    for i in range(n):
+        row = []
+        for j in range(n):
+            row.append(random.randint(1, n * n * 10 - 1))
+        matrix.append(row)
+    return matrix
+
+def print_matrix(matrix):
+    for row in matrix:
+        for num in row:
+            print(f"{num:5}", end="")
+        print()
+
+n = int(input("N 입력: "))
+
+A = make_matrix(n)
+B = make_matrix(n)
+C = make_matrix(n)
+
+result = [[0 for j in range(n)] for i in range(n)]
+
+for i in range(n):
+    for j in range(n):
+        for k in range(n):
+            result[i][j] += A[i][k] * B[k][j]
+        result[i][j] += C[i][j]
+
+print("A")
+print_matrix(A)
+
+print("B")
+print_matrix(B)
+
+print("C")
+print_matrix(C)
+
+print("A x B + C")
+print_matrix(result)
